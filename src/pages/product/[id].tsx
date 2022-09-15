@@ -57,7 +57,7 @@ export const getStaticProps: GetStaticProps<any, { id: string}> = async ({ param
 
     const price = product.default_price as Stripe.Price
     
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    //await new Promise(resolve => setTimeout(resolve, 2000));
     
     return {
         props: {
