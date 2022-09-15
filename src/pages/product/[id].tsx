@@ -1,6 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from "next"
-import Image from "next/image"
-import { useRouter } from "next/router"
+import Image from 'next/future/image'
 import Stripe from "stripe"
 import { stripe } from "../../lib/stripe"
 import { ImageContainer, ProductContainer, ProductDetails } from "../../styles/pages/product"
@@ -17,7 +16,7 @@ interface ProductProps {
 }
 
 export default function Product({product}: ProductProps) {
-    function handleBuyProduct() {
+    function handleBuyButton() {
         console.log(product.defaultPriceId);
     }
     return (
@@ -31,7 +30,7 @@ export default function Product({product}: ProductProps) {
                 <span>{product.price}</span>
                 <p>{product.description}</p>
 
-                <button onClick={handleBuyProduct}>
+                <button onClick={handleBuyButton}>
                     Comprar agora
                 </button>
             </ProductDetails>
@@ -42,11 +41,12 @@ export default function Product({product}: ProductProps) {
 export const getStaticPaths: GetStaticPaths = async () => {
     return {
         paths: [
-            { params: { id:'prod_MR164VNlZyHJup'}}
+            { params: { id:'prod_MR164VNlZyHJup'}},
         ],
-        fallback: true,
+        fallback: 'blocking',
     }
 }
+
 export const getStaticProps: GetStaticProps<any, { id: string}> = async ({ params}) => {
     const productId = params.id
 
