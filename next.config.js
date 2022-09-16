@@ -6,6 +6,9 @@ const nextConfig = {
       'files.stripe.com',
     ]
   },
+  experimental: {
+    newNextLinkBehavior: true,
+  }
 }
 
 module.exports = nextConfig
